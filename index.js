@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const ejs = require('ejs');
+const sqlite3 = require('sqlite3').verbose();
+const db = new sqlite3.Database("./database/database.db");
 //const cookieParser = require('cookie-parser');
 
 app.enable('verbose errors');
@@ -18,5 +20,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(process.env.PORT || 8000, () => {
-  console.log(`Tech Site is running on port ${process.env.PORT}!`);
+  console.log(`Tech Site is running on port ${process.env.PORT || 8000}!`);
 });
