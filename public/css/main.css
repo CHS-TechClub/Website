@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap');
+
+/*
+Constants
+
+primary color: #0085b2
+page backgroud color: #3A3A3A
+border color: white
+navbar color: black
+*/
+
+body {
+  overflow-x: hidden;
+  background-color: #3A3A3A;
+}
+
+/*
+===================
+Navbar
+===================
+*/
+
+.navbar-dark {
+  background-color: black!important;
+}
+
+/*
+===================
+Border
+===================
+*/
+
+.border-chs {
+  border: 2px solid white!important;
+  border-top: 2px solid #0085b2!important;
+}
+
+/*
+===================
+Box
+===================
+*/
+
+.box {
+  padding: 10px;
+  color: white;
+}
+
+.box-top {
+  margin-top: 2%!important;
+}
+
+/*
+===================
+News
+===================
+*/
+
+.news-title {
+  font-size: 300%;
+  text-align: center;
+  background-color: #0085b2;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+}
+
+.news-post {
+  border-bottom: 1px solid white;
+}
+
+/*
+===================
+Misc
+===================
+*/
+
+.bg-black {
+  color: white; /* for text */
+  background-color: black!important;
+}
+
+.margin-top-25 {
+  margin-top: 25%;
+}
+
+.margin-left-25 {
+  margin-top: 25%;
+}
+
+.welcome {
+  font-family: 'Dela Gothic One', cursive;
+  font-size: 300%;
+}
