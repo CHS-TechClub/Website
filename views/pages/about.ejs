@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <% pageName = "About" %>
+    <%- include('../partials/header') %>
+  </head>
+  <body>
+    <%- include('../partials/navbar') %>
+
+  </body>
+  <%- include('../partials/footer') %>
+  <script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
+  <script>
+
+    //Socket Client
+    var socket = io();
+
+    socket.on('connect', () => {
+      console.log("Connected to the server!");
+    })
+
+    socket.on('news_message', (post) => {
+      swal({
+        title: "News Post!",
+        text: `${post.author} just made a new post!`,
+        icon: "info",
+        buttons: ["Stay", "Go"],
+        dangerMode: false,
+      })
+      .then((willDelete) => {
+        if (willDelete) window.location.pathname = '/';
+
+      });
+    })
+
+    socket.on('disconnect', () => {
+      console.log("Disconnected from the server!")
+    })
+
+  </script>
+</html>

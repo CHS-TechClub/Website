@@ -1,6 +1,12 @@
 const express = require('express');
 const app = express();
+const http = require('http').Server(app);
 const ejs = require('ejs');
+
+//Socket stuff
+const ioServer = require('socket.io')(http);
+
+//db
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database("./database/database.db");
 //const cookieParser = require('cookie-parser');
@@ -19,6 +25,26 @@ app.get('/', (req, res) => {
   res.render("pages/index");
 })
 
-app.listen(process.env.PORT || 8000, () => {
+app.get('/about', (req, res) => {
+  res.render("pages/about");
+})
+
+function registerSocketServer() {
+  ioServer.on('connection', (socket) => {
+    console.log("[Socket] New client connection!");
+
+    socket.on('news', (data) => {
+      socket.broadcast.emit('news_message', data);
+    })
+
+    socket.on('disconnect', () => {
+      console.log("[Socket] Client disconnected!");
+    })
+
+  });
+}
+
+http.listen(process.env.PORT || 8000, () => {
+  registerSocketServer();
   console.log(`Tech Site is running on port ${process.env.PORT || 8000}!`);
 });
