@@ -3,6 +3,10 @@ const app = express();
 const http = require('http').Server(app);
 const ejs = require('ejs');
 
+//routing
+const frontendRoute = require("./routes/frontend");
+const apiRoute = require("./routes/api");
+
 //Socket stuff
 const ioServer = require('socket.io')(http);
 
@@ -21,13 +25,8 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.render("pages/index");
-})
-
-app.get('/about', (req, res) => {
-  res.render("pages/about");
-})
+app.use('/', frontendRoute);
+app.use('/api', apiRoute);
 
 function registerSocketServer() {
   ioServer.on('connection', (socket) => {
