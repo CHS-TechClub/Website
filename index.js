@@ -25,16 +25,20 @@ app.get('/', (req, res) => {
   res.render("pages/index");
 })
 
+app.get('/about', (req, res) => {
+  res.render("pages/about");
+})
+
 function registerSocketServer() {
   ioServer.on('connection', (socket) => {
-    console.log("[Socket] Bot connected!");
+    console.log("[Socket] New client connection!");
 
-    socket.on('news', (message) => {
-      console.log(message);
+    socket.on('news', (data) => {
+      socket.broadcast.emit('news_message', data);
     })
 
     socket.on('disconnect', () => {
-      console.log("[Socket] Bot disconnected!");
+      console.log("[Socket] Client disconnected!");
     })
 
   });
