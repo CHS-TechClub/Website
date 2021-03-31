@@ -5,6 +5,7 @@ const ejs = require('ejs');
 
 //routing
 const frontendRoute = require("./routes/frontend");
+const apiRoute = require("./routes/api");
 
 //Socket stuff
 const ioServer = require('socket.io')(http);
@@ -25,6 +26,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 app.use('/', frontendRoute);
+app.use('/api', apiRoute);
 
 function registerSocketServer() {
   ioServer.on('connection', (socket) => {
