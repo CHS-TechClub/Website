@@ -92,3 +92,22 @@ Misc
   font-family: 'Dela Gothic One', cursive;
   font-size: 300%;
 }
+
+/*
+===================
+Responsiveness
+===================
+*/
+
+@media only screen and (max-width: 1024px) {
+  .welcome {
+    font-family: 'Dela Gothic One', cursive;
+    font-size: 300%;
+    text-align: center;
+  }
+
+  .margin-top-25 {
+    margin-top: 5%;
+  }
+
+}
