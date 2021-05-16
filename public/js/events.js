@@ -11,7 +11,7 @@ class Event {
     this.hasContent = hasContent;
     this.id = id;
     this.html = `
-    <div class="col-md-4 mt-5 mb-5" id="${this.id}">
+    <div class="col-sm-12 col-lg-4 mt-5 mb-5" id="${this.id}">
       <div class="mx-auto w-75 border box box-event">
         <div class="event-title">
           ${this.name}
