@@ -50,6 +50,11 @@ Box
   margin-top: 2%!important;
 }
 
+.box-event {
+  background-color: #0085B2;
+  border-radius: 20px;
+}
+
 /*
 ===================
 News
@@ -67,6 +72,34 @@ News
 .news-post {
   border-bottom: 1px solid white;
   padding-bottom: 10px;
+}
+
+/*
+===================
+Events
+===================
+*/
+
+.event-title {
+  font-size: 200%;
+  text-align: center;
+  width: 75%;
+  border-bottom: 2px solid white;
+  margin: auto;
+}
+
+/*
+===================
+Inputs
+===================
+*/
+
+.form-control {
+  background-color: #2B2B2B!important;
+  color: white!important;
+  border: 2px solid #707070;
+  font-size: 15px;
+  border-radius: 15px;
 }
 
 /*

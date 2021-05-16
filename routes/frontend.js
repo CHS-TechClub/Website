@@ -13,4 +13,8 @@ router.get('/council', (req, res) => {
   res.render("pages/council");
 });
 
+router.get('/events', (req, res) => {
+  res.render("pages/events");
+})
+
 module.exports = router;

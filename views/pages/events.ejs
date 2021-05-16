@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <% pageName = "Events" %>
+    <%- include('../partials/header') %>
+  </head>
+  <body>
+    <%- include('../partials/navbar') %>
+
+    <input type="text" id="eventsFilter" placeholder="Search events..." onkeyup="filter()" class="w-50 mx-auto mt-5 form-control p-4 mb-5">
+
+    <div class="row mt-5" id="events">
+    </div>
+
+  </body>
+  <%- include('../partials/footer') %>
+  <script src="./js/events.js"></script>
+  <%- include('../partials/newsUpdateSocket') %>
+</html>

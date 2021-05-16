@@ -43,7 +43,15 @@ function registerSocketServer() {
   });
 }
 
+function registerDatabase() {
+  db.run("CREATE TABLE IF NOT EXISTS events (name VARCHAR, imgPath VARCHAR, about VARCHAR, hasContent BOOLEAN, id VARCHAR)", (error, result) => {
+    if (error) throw error;
+    console.log("Connected to Events Table!");
+  })
+}
+
 http.listen(process.env.PORT || 8000, () => {
   registerSocketServer();
+  registerDatabase();
   console.log(`Tech Site is running on port ${process.env.PORT || 8000}!`);
 });
