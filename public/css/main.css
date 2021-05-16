@@ -35,6 +35,10 @@ Border
   border-top: 2px solid #0085b2!important;
 }
 
+.border-outline {
+  border: 2px solid #2b2b2b;
+  border-radius: 8px;
+}
 /*
 ===================
 Box
@@ -86,6 +90,19 @@ Events
   width: 75%;
   border-bottom: 2px solid white;
   margin: auto;
+}
+
+.event-footer {
+  background-color: #2B2B2B;
+  text-align: center;
+  width: 100%;
+  border-radius: 20px;
+  padding: 3%;
+  margin: auto;
+}
+
+.event-buttons {
+  padding: 5%;
 }
 
 /*
