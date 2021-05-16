@@ -19,6 +19,12 @@ class Event {
         <div class="mx-auto p-5">
           <img src="./images/logo_light.jpg" alt="${this.name}" class="w-100">
         </div>
+        <div class="event-footer">
+          <div class="event-buttons">
+            <button class="btn btn-success float-left">About</button>
+            <button class="btn btn-success float-right">About</button>
+          </div>
+        </div>
       </div>
     </div>
     `

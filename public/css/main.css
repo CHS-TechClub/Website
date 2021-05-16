@@ -88,6 +88,17 @@ Events
   margin: auto;
 }
 
+.event-footer {
+  background-color: #2B2B2B;
+  text-align: center;
+  width: 100%;
+  border-radius: 20px;
+}
+
+.event-buttons {
+  padding: 5%;
+}
+
 /*
 ===================
 Inputs
