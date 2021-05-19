@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <% pageName = `Panel || ${name}` %>
+    <%- include('../partials/header') %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/panel.css">
+  </head>
+  <body>
+
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Logged in as, <%- name %></h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="/panel"><i class="bi bi-person"></i> Home</a>
+                </li>
+                <li>
+                    <a href="/panel/news"><i class="bi bi-newspaper"></i> About</a>
+                </li>
+                <li>
+                    <a href="/panel/events"><i class="bi bi-calendar-event"></i> Event</a>
+                </li>
+                <li>
+                    <a href="/panel/logout"><i class="bi bi-box-arrow-left"></i> Logout</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content Holder -->
+        <div id="content">
+
+            <div class="container mx-auto border-chs box box-login">
+              <%- email %>
+            </div>
+
+        </div>
+    </div>
+
+  </body>
+  <%- include('../partials/footer') %>
+</html>

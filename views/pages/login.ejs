@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <% pageName = "Login" %>
+    <%- include('../partials/header') %>
+  </head>
+  <body>
+
+    <div class="container mx-auto border-chs box box-login">
+      <form class="p-3" method="post" action="/api/login">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="user[email]">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="user[password]">
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
+    </div>
+
+  </body>
+  <%- include('../partials/footer') %>
+</html>

@@ -18,8 +18,11 @@
   },
   "homepage": "https://github.com/CHS-TechClub/Website#readme",
   "dependencies": {
+    "cookie-parser": "^1.4.5",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "object-hash": "^2.1.1",
+    "short-uuid": "^4.2.0",
     "socket.io": "^4.0.0",
     "sqlite3": "^5.0.2"
   }

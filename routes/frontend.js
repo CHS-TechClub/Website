@@ -17,4 +17,8 @@ router.get('/events', (req, res) => {
   res.render("pages/events");
 })
 
+router.get('/login', (req, res) => {
+  res.render("pages/login");
+})
+
 module.exports = router;
