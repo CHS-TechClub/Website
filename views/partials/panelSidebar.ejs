@@ -1,0 +1,36 @@
+<!-- Sidebar Holder -->
+<nav id="sidebar">
+  <div class="sidebar-header">
+    <h3>Logged in as, <%- name %></h3>
+  </div>
+
+  <ul class="list-unstyled components" id="sideNav">
+    <li>
+      <a href="/panel"><i class="bi bi-person"> </i>Home</a>
+    </li>
+    <li>
+      <a href="/panel/news"><i class="bi bi-newspaper"> </i>About</a>
+    </li>
+    <li>
+      <a href="/panel/events"><i class="bi bi-calendar-event"> </i>Event</a>
+    </li>
+    <li>
+      <a href="/panel/logout"><i class="bi bi-box-arrow-left"> </i>Logout</a>
+    </li>
+  </ul>
+</nav>
+
+<script type="text/javascript">
+  //on load get all link elements on the page and the compare text data within the links with the pageName
+  //if the pageName nad text data match then the link tag containinbg the text data will be assigned the "active" class
+  let pageName = "<%= pageName %>";
+  window.addEventListener('load', (event) => {
+    let links = document.getElementById("sideNav").getElementsByTagName("li");
+    for (let i = 0; i < links.length; i++) {
+      let link = links[i];
+      let name = link.getElementsByTagName("a")[0].childNodes[1].data;
+      if (name.toLowerCase() == pageName.toLowerCase())
+        link.classList.add('active');
+    }
+  })
+</script>
