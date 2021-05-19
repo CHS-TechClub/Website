@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database("./database/database.db");
+const { verify } = require("./../../utils/verify.js");
 
 router.get('/', (req, res) => {
   events = [];
@@ -13,6 +14,6 @@ router.get('/', (req, res) => {
 });
 
 router.get('/createEvent', (req, res) => {
-  
+
 })
 module.exports = router;
