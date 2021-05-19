@@ -17,21 +17,15 @@ router.post('/', (req, res) => {
   db.each("SELECT * FROM users WHERE email=?", [email], (error, account) => {
     if (error) throw error;
 
-    if (password != account.password) {
-      res.render("pages/login", {
-        status: "failed"
-      });
-      return;
+    if (password == account.password) {
+      res.cookie("verify", password);
+      res.redirect("/panel");
+    } else {
+      res.cookie("verify", "failed");
+      res.redirect("/login");
     }
 
-    res.cookie("verify", password);
-    res.redirect("/panel/home");
-    return;
   })
-
-  res.render("pages/login", {
-    status: "failed"
-  });
 
 })
 
