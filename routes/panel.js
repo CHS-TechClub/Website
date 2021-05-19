@@ -15,12 +15,18 @@ function verify(cookie, callback) {
   }
 
   //final check to make sure the account exists
+  let userAccount = null;
   db.each("SELECT * FROM users WHERE password=? LIMIT 1", [cookie], (error, account) => {
     if (error) throw error;
 
-    if (account) callback([true, account])
-    else callback([false])
+    userAccount = account;
 
+  }, () => {
+    if (!userAccount) {
+      callback([false]);
+      return
+    }
+    callback([true, userAccount])
   })
 
 }
@@ -55,6 +61,11 @@ router.get("/staff", (req, res) => {
 
   })
 
+})
+
+router.get('/logout', (req, res) => {
+  res.cookie("verify", "failed");
+  res.redirect("/");
 })
 
 module.exports = router;
