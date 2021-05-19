@@ -63,6 +63,22 @@ router.get("/staff", (req, res) => {
 
 })
 
+router.get("/events", (req, res) => {
+  let cookie = req.cookies.verify;
+
+  verify(cookie, (verified) => {
+    if (!verified[0]) {
+      res.redirect("/login");
+      return;
+    }
+
+    let account = verified[1];
+    res.render("pages/panelEvents", {name: account.name, img: account.imgPath, email: account.email});
+
+  })
+
+})
+
 router.get('/logout', (req, res) => {
   res.cookie("verify", "failed");
   res.redirect("/");

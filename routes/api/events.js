@@ -12,4 +12,7 @@ router.get('/', (req, res) => {
   })
 });
 
+router.get('/createEvent', (req, res) => {
+  
+})
 module.exports = router;

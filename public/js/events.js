@@ -90,7 +90,7 @@ class Event {
 }
 
 window.addEventListener('load', (event) => {
-  fetch("./api/events")
+  fetch("/api/events")
   .then(response => response.json())
   .then((eventData) => {
     for (const event of eventData) {
