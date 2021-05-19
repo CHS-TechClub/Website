@@ -13,13 +13,13 @@ const ioServer = require('socket.io')(http);
 //db
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database("./database/database.db");
-//const cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 
 app.enable('verbose errors');
 require('events').EventEmitter.defaultMaxListeners = 0;
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
-//app.use(cookieParser());
+app.use(cookieParser());
 
 // Parse URL-encoded bodies (as sent by HTML forms)
 app.use(express.urlencoded({extended: true}));
@@ -48,6 +48,12 @@ function registerDatabase() {
     if (error) throw error;
     console.log("Connected to Events Table!");
   })
+
+  db.run("CREATE TABLE IF NOT EXISTS users (email VARCHAR, imgPath VARCHAR, password VARCHAR, name VARCHAR)", (error, result) => {
+    if (error) throw error;
+    console.log("Connected to Users Table!");
+  })
+
 }
 
 http.listen(process.env.PORT || 8000, () => {
