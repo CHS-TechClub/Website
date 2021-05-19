@@ -8,7 +8,11 @@ const storage = multer.diskStorage({
     cb(null, './public/images')
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname) //Appending .jpg
+    if (!file) {
+      cb(null, "logo_light.jpg");
+    } else {
+      cb(null, file.originalname) //Appending .jpg
+    }
   }
 })
 const upload = multer({storage: storage});
@@ -28,12 +32,18 @@ function verify(cookie, callback) {
   }
 
   //final check to make sure the account exists
+  let userAccount = null;
   db.each("SELECT * FROM users WHERE password=? LIMIT 1", [cookie], (error, account) => {
     if (error) throw error;
 
-    if (account) callback([true, account])
-    else callback([false])
+    userAccount = account;
 
+  }, () => {
+    if (!userAccount) {
+      callback([false]);
+      return
+    }
+    callback([true, userAccount])
   })
 
 }
@@ -47,17 +57,27 @@ router.post('/', (req, res) => {
   let password = hash(req.body.user.password);
 
   // use [email] to prevent sql injection
-  db.each("SELECT * FROM users WHERE email=?", [email], (error, account) => {
+  let userAccount = null;
+  db.each("SELECT * FROM users WHERE email=? LIMIT 1", [email], (error, account) => {
     if (error) throw error;
 
-    if (password == account.password) {
+    userAccount = account;
+
+  }, () => {
+
+    if (userAccount == null) {
+      res.cookie("verify", "failed");
+      res.redirect("/login");
+      return;
+    }
+
+    if (password == userAccount.password) {
       res.cookie("verify", password);
       res.redirect("/panel");
     } else {
       res.cookie("verify", "failed");
       res.redirect("/login");
     }
-
   })
 
 })
@@ -75,7 +95,14 @@ router.post('/createuser', upload.single('file'), (req, res) => {
       return;
     }
 
-    db.run("INSERT INTO users (email, imgPath, password, name) VALUES (?, ?, ?, ?)", [email, "/images/" + file.originalname, password, displayname], (error, result) => {
+    let filePath;
+    if (!file) {
+      filePath = "/images/logo_light.jpg"
+    } else {
+      filePath = "/images/" + file.originalname;
+    }
+
+    db.run("INSERT INTO users (email, imgPath, password, name) VALUES (?, ?, ?, ?)", [email, filePath, password, displayname], (error, result) => {
       if (error) throw error;
 
       res.redirect("/panel/staff");
@@ -90,15 +117,17 @@ router.post('/deleteuser', (req, res) => {
   let email = req.body.user.email;
 
   verify(cookie, (verified) => {
-    if (!verified[0]) {
+    if (!verified[0] || !verified) {
       res.redirect("/login");
       return;
     }
 
     console.log("verified");
+    let password;
     db.each("SELECT * FROM users WHERE email=?", [email], (error, account) => {
       if (error) throw error;
 
+      password = account.password;
       if (account.email == "dev@gmail.com") { //no deleting the dev account!
         res.redirect("/panel/staff");
         return;
@@ -107,17 +136,17 @@ router.post('/deleteuser', (req, res) => {
         if (err) throw err;
       })
 
+    }, () => {
       db.run("DELETE FROM users WHERE email=?", [email], (error) => {
         if (error) throw error;
 
-        if (account.password == cookie) {
+        if (password == cookie) {
           res.redirect("/login");
         } else {
           res.redirect("/panel/staff");
         }
 
       })
-
     })
 
 
