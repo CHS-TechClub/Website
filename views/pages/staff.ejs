@@ -67,7 +67,41 @@
       </div>
     </div>
 
+
+    <!-- The Modal -->
+    <div class="modal" id="deleteModal">
+      <div class="modal-dialog modal-xxl">
+        <div class="modal-content border-0">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title" id="eventModalTitle">Delete Staff Member</h4>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body" id="eventModalBody">
+            <form class="p-3" method="post" action="/api/login/deleteuser">
+              <div class="form-group">
+                <label for="exampleInputEmail1">User's Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="user[email]">
+              </div>
+              <button type="submit" class="btn btn-warning">Delete</button>
+            </form>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            This action is logged!
+          </div>
+
+        </div>
+      </div>
+    </div>
+
   </body>
   <%- include('../partials/footer') %>
+  <script type="text/javascript">
+    let email = "<%= email %>";
+  </script>
   <script src="/js/staff.js"></script>
 </html>

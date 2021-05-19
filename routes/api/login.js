@@ -85,4 +85,44 @@ router.post('/createuser', upload.single('file'), (req, res) => {
 
 })
 
+router.post('/deleteuser', (req, res) => {
+  let cookie = req.cookies.verify;
+  let email = req.body.user.email;
+
+  verify(cookie, (verified) => {
+    if (!verified[0]) {
+      res.redirect("/login");
+      return;
+    }
+
+    console.log("verified");
+    db.each("SELECT * FROM users WHERE email=?", [email], (error, account) => {
+      if (error) throw error;
+
+      if (account.email == "dev@gmail.com") { //no deleting the dev account!
+        res.redirect("/panel/staff");
+        return;
+      }
+      fs.unlink("./public" + account.imgPath, (err) => {
+        if (err) throw err;
+      })
+
+      db.run("DELETE FROM users WHERE email=?", [email], (error) => {
+        if (error) throw error;
+
+        if (account.password == cookie) {
+          res.redirect("/login");
+        } else {
+          res.redirect("/panel/staff");
+        }
+
+      })
+
+    })
+
+
+  })
+
+})
+
 module.exports = router;
