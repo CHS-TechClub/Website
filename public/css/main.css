@@ -64,6 +64,10 @@ Box
   margin-top: 5%;
 }
 
+.box-staff {
+  background-color: #2b2b2b;
+}
+
 /*
 ===================
 News
@@ -146,6 +150,10 @@ Misc
 .welcome {
   font-family: 'Dela Gothic One', cursive;
   font-size: 300%;
+}
+
+.staff-image {
+  padding: 5%!important;
 }
 
 /*

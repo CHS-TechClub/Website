@@ -12,9 +12,44 @@
       <!-- Page Content Holder -->
       <div id="content">
 
-          <div class="container mx-auto border-chs box box-login">
-            <%- email %>
-            Staff
+          <div class="mx-auto border-chs box box-login w-75">
+            <h3 class="news-title">Staff</h3>
+            <hr class="border-white">
+
+            <ul class="point-less" id="staffList">
+              <li>
+                <div class="row box-staff w-100">
+                  <div class="col-sm-3 bg-black">
+                    <img src="/images/logo_light.jpg" alt="image" class="rounded w-100 staff-image">
+                  </div>
+
+                  <div class="col-sm-6">
+                    <ul class="point-less" style="font-size: 30px;">
+                      <li><strong>Name:</strong> <%- name %></li>
+                      <li><strong>Email:</strong> <%- email %></li>
+                      <li><button class="btn btn-danger" style="font-size: 20px;">Delete</button></li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="row box-staff w-100">
+                  <div class="col-sm-3 bg-black">
+                    <img src="/images/logo_light.jpg" alt="image" class="rounded w-100 staff-image">
+                  </div>
+
+                  <div class="col-sm-6">
+                    <ul class="point-less" style="font-size: 30px;">
+                      <li><strong>Name:</strong> <%- name %></li>
+                      <li><strong>Email:</strong> <%- email %></li>
+                      <li><button class="btn btn-danger" style="font-size: 20px;">Delete</button></li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+            </ul>
+
           </div>
 
       </div>
