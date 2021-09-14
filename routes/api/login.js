@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const hash = require('object-hash');
-const short = require('short-uuid');
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database("./database/database.db");
 const { verify } = require("./../../utils/verify.js");
