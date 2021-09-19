@@ -53,7 +53,7 @@ class Event {
             ${this.name}
           </div>
           <div class="mx-auto p-5">
-            <img src="./images/logo_light.jpg" alt="${this.name}" class="w-100 border-outline">
+            <img src="${this.img}" alt="${this.name}" class="w-100 border-outline">
           </div>
           <div class="row event-footer">
             <div class="col-sm-6">
@@ -74,7 +74,7 @@ class Event {
             ${this.name}
           </div>
           <div class="mx-auto p-5">
-            <img src="./images/logo_light.jpg" alt="${this.name}" class="w-100 border-outline">
+            <img src="${this.img}" alt="${this.name}" class="w-100 border-outline">
           </div>
           <div class="row event-footer">
             <div class="col-sm-12">
@@ -90,7 +90,7 @@ class Event {
 }
 
 window.addEventListener('load', (event) => {
-  fetch("./api/events")
+  fetch("/api/events")
   .then(response => response.json())
   .then((eventData) => {
     for (const event of eventData) {

@@ -13,11 +13,11 @@ window.addEventListener('load', (event) => {
         staffCard = `
         <li>
           <div class="row box-staff w-100">
-            <div class="col-sm-3 bg-black">
+            <div class="col-lg-3 bg-black">
               <img src="${staff.imgPath}" alt="image" class="rounded w-100 staff-image">
             </div>
 
-            <div class="col-sm-6">
+            <div class="col-lg-6">
               <ul class="point-less" style="font-size: 30px;">
                 <li><strong>Name:</strong> ${staff.name}</li>
                 <li><strong>Email:</strong> ${staff.email}</li>
@@ -31,11 +31,11 @@ window.addEventListener('load', (event) => {
         staffCard = `
         <li>
           <div class="row box-staff w-100">
-            <div class="col-sm-3 bg-black">
+            <div class="col-lg-3 bg-black">
               <img src="${staff.imgPath}" alt="image" class="rounded w-100 staff-image">
             </div>
 
-            <div class="col-sm-6">
+            <div class="col-lg-6">
               <ul class="point-less" style="font-size: 30px;">
                 <li><strong>Name:</strong> ${staff.name}</li>
                 <li><strong>Email:</strong> ${staff.email}</li>

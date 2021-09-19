@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <% pageName = "Staff" %>
+    <% pageName = "Events" %>
     <%- include('../partials/header') %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/css/panel.css">
@@ -12,13 +12,13 @@
       <!-- Page Content Holder -->
       <div id="content">
 
-          <button class="btn btn-success w-100" data-toggle="modal" data-target="#staffModal">New Staff Member</button>
+          <button class="btn btn-success w-100" data-toggle="modal" data-target="#eventModal">New Event</button>
           <div class="mx-auto border-chs box box-login w-75">
-            <h3 class="news-title">Staff</h3>
+            <h3 class="news-title">Events</h3>
             <hr class="border-white">
 
-            <ul class="point-less" id="staffList">
-            </ul>
+            <div class="row mt-5" id="events">
+            </div>
 
           </div>
 
@@ -26,29 +26,29 @@
     </div>
 
     <!-- The Modal -->
-    <div class="modal fade" id="staffModal">
+    <div class="modal fade" id="eventModal">
       <div class="modal-dialog modal-xxl">
         <div class="modal-content border-0">
 
           <!-- Modal Header -->
           <div class="modal-header">
-            <h4 class="modal-title" id="eventModalTitle">New Staff Member</h4>
+            <h4 class="modal-title">New Event</h4>
           </div>
 
           <!-- Modal body -->
-          <div class="modal-body" id="eventModalBody">
-            <form class="p-3" method="post" action="/api/staff/createuser" enctype="multipart/form-data">
+          <div class="modal-body">
+            <form class="p-3" method="post" action="/api/events/createEvent" enctype="multipart/form-data">
               <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="user[email]">
+                <label for="exampleInputEmail1">Event Name</label>
+                <input class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name" name="event[name]">
               </div>
               <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input class="form-control" id="exampleInputPassword1" placeholder="Password" name="user[password]">
+                <label for="exampleFormControlTextarea3">About</label>
+                <textarea class="form-control" id="exampleFormControlTextarea3" rows="10" name="event[about]"></textarea>
               </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Display Name</label>
-                <input class="form-control" id="exampleInputPassword1" placeholder="Password" name="user[name]">
+              <div class="form-check">
+              	<input class="form-check-input" type="checkbox" id="flexCheckDefault" name="event[content]">
+                <label class="form-check-label" for="flexCheckDefault">Has Content</label>
               </div>
               <div class="form-group">
                 <label for="exampleFormControlFile1">Profile Picture</label>
@@ -69,21 +69,21 @@
 
 
     <!-- The Modal -->
-    <div class="modal fade" id="deleteModal">
+    <div class="modal" id="deleteModal">
       <div class="modal-dialog modal-xxl">
         <div class="modal-content border-0">
 
           <!-- Modal Header -->
           <div class="modal-header">
-            <h4 class="modal-title" id="eventModalTitle">Delete Staff Member</h4>
+            <h4 class="modal-title" id="eventModalTitle">Delete Event</h4>
           </div>
 
           <!-- Modal body -->
           <div class="modal-body" id="eventModalBody">
-            <form class="p-3" method="post" action="/api/staff/deleteuser">
+            <form class="p-3" method="post" action="/api/event/deleteevent">
               <div class="form-group">
-                <label for="exampleInputEmail1">User's Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="user[email]">
+                <label for="exampleInputEmail1">Event Id</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter id" name="id">
               </div>
               <button type="submit" class="btn btn-warning">Delete</button>
             </form>
@@ -100,8 +100,5 @@
 
   </body>
   <%- include('../partials/footer') %>
-  <script type="text/javascript">
-    let email = "<%= email %>";
-  </script>
-  <script src="/js/staff.js"></script>
+  <script src="/js/events.js"></script>
 </html>
