@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <% pageName = "cTech SMP" %>
+    <%- include('../partials/header') %>
+  </head>
+  <body>
+    <%- include('../partials/navbar') %>
+
+    <div class="w-75 m-auto box-top shadow rounded">
+      <div class="news-title box" id="name">
+        's Stats
+      </div>
+      <div class="news-content border border-chs">
+        <div class="box row">
+
+          <div class="col-sm-12 col-md-4 d-flex border-right p-5">
+            <div class="row w-100">
+              <div class="col-sm-12 col-md-6">
+                <img src="https://crafatar.com/renders/body/<%- uuid %>" width="75%" alt="Player">
+              </div>
+
+              <div class="col-sm-12 col-md-6">
+                <ul class="cTechList my-auto" id="playerData">
+
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-md-8 border-left my-auto p-5">
+            <h1 class="text-center" id="KDR"></h1>
+            <hr class="border mt-3 mb-3">
+            <div class="row w-100">
+              <div class="col-sm-12 col-md-6 d-flex border-right">
+                <h3>Killed:</h3>
+                <ul class="cTechList mt-5" id="kills">
+
+                </ul>
+              </div>
+
+              <div class="col-sm-12 col-md-6 d-flex border-left">
+                <h3>Died To:</h3>
+                <ul class="cTechList mt-5" id="deaths">
+
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </body>
+  <%- include('../partials/footer') %>
+  <%- include('../partials/newsUpdateSocket') %>
+  <script type="text/javascript">
+    let playerData = document.getElementById("playerData");
+    let name = document.getElementById("name");
+    let kdrElement = document.getElementById("KDR");
+    let kills = document.getElementById("kills");
+    let deaths = document.getElementById("deaths");
+    let uuid = "<%- uuid %>";
+
+    window.addEventListener("load", (event) => {
+
+      fetch(`http://108.35.196.122:8080/players/get/${uuid}`)
+        .then(response => response.json())
+        .then((playerInfo) => {
+          //General Stats
+          fetch(`https://api.minetools.eu/uuid/${uuid}`)
+            .then(res => res.json())
+            .then((player) => {
+              name.innerHTML = `${player.name}'s Stats`;
+              playerData.innerHTML += `<li class="playerTab">
+                <strong>Coins:</strong> ${playerInfo.playerCoins}
+              </li>
+              <li class="playerTab">
+                <strong>Rank:</strong> ${playerInfo.rankName}
+              </li>
+              <li class="playerTab">
+                <strong>Group:</strong> <a class="playerLink" href="/groups/${playerInfo.groupName}">${playerInfo.groupName}</a>
+              </li>`;
+            })
+
+          //KDR
+          kdrElement.innerHTML = `KDR: ${playerInfo.killed.length / playerInfo.killedBy.length}`;
+
+          //Kills
+          let uname;
+          for (const victim of playerInfo.killed) {
+            fetch(`https://api.minetools.eu/uuid/${victim}`)
+              .then(res => res.json())
+              .then((player) => {
+                uname = player.name;
+                kills.innerHTML += `<li class="playerTab">
+                  <a class="playerLink" href="/players/${victim}">
+                    <div class="playerInfo rounded">
+                      <img class="rounded" src="https://crafatar.com/avatars/${victim}" alt="${name}" width="75px"> ${uname}
+                    </div>
+                  </a>
+                </li>`;
+              })
+          }
+
+          //Deaths
+          for (const killer of playerInfo.killedBy) {
+            fetch(`https://api.minetools.eu/uuid/${killer}`)
+              .then(res => res.json())
+              .then((player) => {
+                uname = player.name;
+                deaths.innerHTML += `<li class="playerTab">
+                  <a class="playerLink" href="/players/${killer}">
+                    <div class="playerInfo rounded">
+                      <img class="rounded" src="https://crafatar.com/avatars/${killer}" alt="${name}" width="75px"> ${uname}
+                    </div>
+                  </a>
+                </li>`;
+              })
+          }
+        })
+
+    })
+  </script>
+</html>
