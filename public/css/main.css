@@ -130,6 +130,39 @@ Inputs
 
 /*
 ===================
+cTech
+===================
+*/
+
+.cTechList {
+  list-style-type: none;
+  width: 90%;
+}
+
+.playerTab {
+  font-size: 24px;
+  padding: 5px;
+}
+
+.playerInfo {
+  background-color: gray;
+}
+
+.playerInfo:hover {
+  background-color: darkgray;
+}
+
+.playerLink {
+  color: white;
+}
+
+.playerLink:hover {
+  color: white;
+  font-style: normal;
+}
+
+/*
+===================
 Misc
 ===================
 */

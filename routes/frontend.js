@@ -17,6 +17,22 @@ router.get('/events', (req, res) => {
   res.render("pages/events");
 })
 
+router.get('/ctech', (req, res) => {
+  res.render("pages/cTech");
+})
+
+router.get('/players/:uuid?', (req, res) => {
+  res.render("pages/player", {
+    uuid: req.params.uuid
+  });
+})
+
+router.get('/groups/:name?', (req, res) => {
+  res.render("pages/group", {
+    name: req.params.name
+  });
+})
+
 router.get('/login', (req, res) => {
   res.render("pages/login");
 })

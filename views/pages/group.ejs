@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <% pageName = "cTech SMP" %>
+    <%- include('../partials/header') %>
+  </head>
+  <body>
+    <%- include('../partials/navbar') %>
+
+    <div class="w-75 m-auto box-top shadow rounded">
+      <div class="news-title box" id="name">
+        <%- name %>'s Stats
+      </div>
+      <div class="news-content border border-chs">
+        <div class="box row">
+
+          <div class="col-sm-12 col-md-4 d-flex border-right p-5">
+            <ul class="cTechList my-auto" id="groupData">
+
+            </ul>
+          </div>
+
+          <div class="col-sm-12 col-md-8 border-left my-auto p-5">
+            <h1 class="text-center">Members</h1>
+            <hr class="border mt-3 mb-3">
+            <ul class="cTechList my-auto" id="playerData">
+
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </body>
+  <%- include('../partials/footer') %>
+  <%- include('../partials/newsUpdateSocket') %>
+  <script type="text/javascript">
+    let groupData = document.getElementById("groupData");
+    let playerData = document.getElementById("playerData");
+    let name = "<%- name %>";
+
+    window.addEventListener("load", (event) => {
+
+      fetch(`http://108.35.196.122:8080/groups/get/${name}`)
+        .then(response => response.json())
+        .then((groupInfo) => {
+          //General Stats
+          groupData.innerHTML += `<li class="playerTab">
+            <strong>Coins:</strong> ${groupInfo.coins}
+          </li>
+          <li class="playerTab">
+            <strong>Color:</strong> ${groupInfo.color}
+          </li>`;
+
+          //Kills
+          let uname;
+          fetch(`https://api.minetools.eu/uuid/${groupInfo.ownerId}`)
+            .then(res => res.json())
+            .then((player) => {
+              uname = player.name;
+              playerData.innerHTML += `<li class="playerTab">
+                <a class="playerLink" href="/players/${groupInfo.ownerId}">
+                  <div class="playerInfo rounded">
+                    <img class="rounded" src="https://crafatar.com/avatars/${groupInfo.ownerId}" alt="${uname}" width="75px"> ${uname} <i class="bi bi-award-fill" style="color: yellow;" data-toggle="tooltip" data-placement="top" title="Leader"></i>
+                  </div>
+                </a>
+              </li>`;
+            })
+
+          for (const member of groupInfo.members) {
+            if (member === groupInfo.ownerId) continue;
+            fetch(`https://api.minetools.eu/uuid/${member}`)
+              .then(res => res.json())
+              .then((player) => {
+                uname = player.name;
+                playerData.innerHTML += `<li class="playerTab">
+                  <a class="playerLink" href="/players/${member}">
+                    <div class="playerInfo rounded">
+                      <img class="rounded" src="https://crafatar.com/avatars/${member}" alt="${uname}" width="75px"> ${uname}
+                    </div>
+                  </a>
+                </li>`;
+              })
+          }
+        })
+
+    })
+  </script>
+</html>
