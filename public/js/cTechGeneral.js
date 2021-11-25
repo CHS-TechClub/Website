@@ -3,7 +3,7 @@ let groupsTab = document.getElementById("groups");
 
 window.addEventListener("load", (event) => {
   //players
-  fetch("http://108.35.196.122:8080/players", {mode: 'no-cors'})
+  fetch("https://108.35.196.122:8080/players", {mode: 'no-cors'})
     .then(response => response.json())
     .then((uuids) => {
       let name;
@@ -24,7 +24,7 @@ window.addEventListener("load", (event) => {
     })
 
     //Groups
-    fetch("http://108.35.196.122:8080/groups", {mode: 'no-cors'})
+    fetch("https://108.35.196.122:8080/groups", {mode: 'no-cors'})
       .then(response => response.json())
       .then((groups) => {
         for (const group of groups) {
