@@ -42,7 +42,7 @@
 
     window.addEventListener("load", (event) => {
 
-      fetch(`https://108.35.196.122:8080/groups/get/${name}`, {mode: 'no-cors'})
+      fetch(`https://108.35.196.122:8080/groups/get/${name}`)
         .then(response => response.json())
         .then((groupInfo) => {
           //General Stats

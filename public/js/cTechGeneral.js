@@ -3,7 +3,7 @@ let groupsTab = document.getElementById("groups");
 
 window.addEventListener("load", (event) => {
   //players
-  fetch("https://108.35.196.122:8080/players", {mode: 'no-cors'})
+  fetch("https://108.35.196.122:8080/players")
     .then(response => response.json())
     .then((uuids) => {
       let name;
@@ -24,10 +24,12 @@ window.addEventListener("load", (event) => {
     })
 
     //Groups
-    fetch("https://108.35.196.122:8080/groups", {mode: 'no-cors'})
+    fetch("https://108.35.196.122:8080/groups")
       .then(response => response.json())
       .then((groups) => {
         for (const group of groups) {
+          group[0].replace("<", "");
+          group[0].replace(">", "");
           groupsTab.innerHTML += `<li class="playerTab">
             <a class="playerLink" href="/groups/${group[0]}">
               <div class="playerInfo rounded p-3" style="color: ${group[1]};">
