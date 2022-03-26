@@ -50,6 +50,7 @@ Sidebar
 #sidebar {
     min-width: 250px;
     max-width: 250px;
+    min-height: calc(100vh - 50px);
     background: #0085b2;
     color: white;
     transition: all 0.6s cubic-bezier(0.945, 0.020, 0.270, 0.665);
