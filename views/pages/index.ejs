@@ -5,86 +5,83 @@
     <%- include('../partials/header') %>
   </head>
   <body>
-    <%- include('../partials/navbar') %>
-    <div class="border"></div>
-    <div class="row bg-black">
-      <div class="col-lg-6">
-        <img src="/images/logo_animated.gif" alt="logo_animated" width="100%">
-      </div>
-      <div class="col-lg-6">
-        <div class="box margin-top-25 margin-left-25 welcome">
-          Welcome to Tech Club!
-          <br>
-          Every Friday. 10:50-11:10. Room 203.
-        </div>
-      </div>
-    </div>
+    <div class="wrapper">
+      <%- include('../partials/sidebar') %>
 
-    <div class="w-75 m-auto box-top shadow rounded">
-      <div class="news-title box ">
-        News
-      </div>
-      <div class="news-content border border-chs">
-        <div class="box" id="news">
-          <div class="pl-4 news-post mt-2">
-            <h5>
-              <img src="/images/Mark.png" alt="Logo" style="width:40px;" class="rounded">
-              Mark
-              <span class="float-right">11/19/2021 @ 10:00 pm</span>
-            </h5>
-            <div class="content">
-              <strong>cTech SMP Launch!</strong>
-              <br><br>
-              It's been almost a year since the cTech SMP closed. I, along with the rest of the Tech Club Council are proud to present the new and improved cTech SMP!
-              <br><br>
-              Here is a basic overview of the new features in the server:
-              <ul>
-                <li>Player balances</li>
-                <li>Player item shop</li>
-                <li>Group balaces</li>
-                <li>Group item shop</li>
-                <li>Disabled Nether and End Dimensions</li>
-                <li>Disabled crafting:
-                  <ul>
-                    <li>Anvil</li>
-                    <li>Beacon</li>
-                    <li>Lectern</li>
-                    <li>Enchanting Table</li>
-                  </ul>
-                </li>
-                <li>Limited world size to 5,000 x 5,000 (relative to 0, 0).</li>
-                <li>Server open on limited hours.</li>
-              </ul>
-              <br><br>
-              These features were added with the goal of solving the following issues:
-              <ul>
-                <li>Lack of player interaction.</li>
-                <li>No-lifes dominating the server.</li>
-                <li>Boring/bland economy.</li>
-                <li>The game becoming too easy and stale.</li>
-              </ul>
-              <br><br>
-              These are the important commands you should know in order to fully enjoy your cTech SMP experience!
-              <ul>
-                <li>/g | Command for interfacing with groups; typing this will result in a help message appearing in chat.</li>
-                <li>/shop | Open the item shop.</li>
-                <li>/bal | View your balance</li>
-                <li>/pay (user) (amount) | Pay a user an amount of money. Example: /pay Flaymed 100</li>
-                <li>/coords | Sends your current coordinates to your group members.</li>
-              </ul>
-              <br><br>
-              Please do not hesitate to talk to me or any other council member if you have any questions, have fun!
-              To obtain the IP click <a href="/cTech">here</a>.
-              <br>
-              - Mark
+      <div id="content">
+
+        <div class="w-75 m-auto box-top shadow rounded">
+          <div class="news-title box">
+            <img src="/images/Mark.png" alt="Logo" style="width:80px;" class="rounded float-left" data-toggle="tooltip" data-placement="top" title="Mark">
+            <div>
+              <span>cTech SMP Launch!</span>
             </div>
           </div>
+          <div class="news-content border border-chs">
+            <div class="box" id="news">
+              <div class="pl-4 news-post mt-2">
 
+                <div class="news-content">
+                  It's been almost a year since the cTech SMP closed. I, along with the rest of the Tech Club Council are proud to present the new and improved cTech SMP!
+                  <br><br>
+                  Here is a basic overview of the new features in the server:
+                  <ul>
+                    <li>Player balances</li>
+                    <li>Player item shop</li>
+                    <li>Group balaces</li>
+                    <li>Group item shop</li>
+                    <li>Disabled Nether and End Dimensions</li>
+                    <li>Disabled crafting:
+                      <ul>
+                        <li>Anvil</li>
+                        <li>Beacon</li>
+                        <li>Lectern</li>
+                        <li>Enchanting Table</li>
+                      </ul>
+                    </li>
+                    <li>Limited world size to 5,000 x 5,000 (relative to 0, 0).</li>
+                    <li>Server open on limited hours.</li>
+                  </ul>
+                  <br><br>
+                  These features were added with the goal of solving the following issues:
+                  <ul>
+                    <li>Lack of player interaction.</li>
+                    <li>No-lifes dominating the server.</li>
+                    <li>Boring/bland economy.</li>
+                    <li>The game becoming too easy and stale.</li>
+                  </ul>
+                  <br><br>
+                  These are the important commands you should know in order to fully enjoy your cTech SMP experience!
+                  <ul>
+                    <li>/g | Command for interfacing with groups; typing this will result in a help message appearing in chat.</li>
+                    <li>/shop | Open the item shop.</li>
+                    <li>/bal | View your balance</li>
+                    <li>/pay (user) (amount) | Pay a user an amount of money. Example: /pay Flaymed 100</li>
+                    <li>/coords | Sends your current coordinates to your group members.</li>
+                  </ul>
+                  <br><br>
+                  Please do not hesitate to talk to me or any other council member if you have any questions, have fun!
+                  To obtain the IP click <a href="/cTech">here</a>.
+                  <br>
+                  - Mark
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
+
+
       </div>
     </div>
+
   </body>
   <%- include('../partials/footer') %>
+  <script>
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
   <script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
   <script>
     let newsSection = document.getElementById("news");

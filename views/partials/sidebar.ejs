@@ -1,0 +1,56 @@
+<!-- Sidebar Holder -->
+<nav id="sidebar">
+  <div class="sidebar-header">
+    <!-- Logged in as, name -->
+    <img src="/images/logo_dark.png" alt="light logo for tech club" style="width: 30%;">
+  </div>
+
+  <ul class="list-unstyled components" id="sideNav">
+    <li>
+      <a href="/"><i class="bi bi-person"> </i>Home</a>
+    </li>
+    <li>
+      <a href="#" onclick="swal({
+        title: 'About',
+        text: 'Tech Club is a recently created club devoted to all things tech! In-person meetings take place every Friday in the supervisor, Mr Godkin’s, room (205) during second half of lunch to create a safe place for club members to hang out, play video games, and talk all things tech. Most frequently, we play Mario Kart and Super Smash Bros Ultimate for the Nintendo Switch. Tech Club also holds workshop meetings where we teach a variety of skills related to technology, such as web design, digital art, art in tech, and coding. Tech Club is always happy to widen its skillset and wants to remain open to people with all types of interests. Some of the workshops hosted are heavily technology based, like how certain video games like Minecraft work behind the scenes, and others that are based more around design, such as the workshop series devoted to video game art styles and their impacts. We also have a discord server so you can play with club members during online meetings as well! Join our discord here.',
+        icon: 'info'
+      })"><i class="bi bi-newspaper"> </i>About</a>
+    </li>
+    <li>
+      <a href="/events"><i class="bi bi-calendar-event"> </i>Events</a>
+    </li>
+    <li>
+      <a href="/council"><i class="bi bi-people-fill"> </i>Council</a>
+    </li>
+    <li>
+      <!-- TODO: fix the freaking stats page-->
+      <a href="#" onclick='swal({
+        title: `Minecraft Server`,
+        text: `IP: 108.35.196.122:25565`,
+        icon: `success`,
+        buttons: [`Close`, `View Player Stats`],
+        dangerMode: false,
+      }).then((willMove) => {
+        if (willMove) window.location.pathname = `/`;
+      })'><i class="bi bi-box-arrow-left"> </i>cTech SMP</a>
+    </li>
+    <li>
+      <a href="https://discord.gg/j6mEMqT" target="_blank"><i class="bi bi-bell"></i> Discord</a>
+    </li>
+  </ul>
+</nav>
+
+<script type="text/javascript">
+  //on load get all link elements on the page and the compare text data within the links with the pageName
+  //if the pageName nad text data match then the link tag containinbg the text data will be assigned the "active" class
+  let pageName = "<%= pageName %>";
+  window.addEventListener('load', (event) => {
+    let links = document.getElementById("sideNav").getElementsByTagName("li");
+    for (let i = 0; i < links.length; i++) {
+      let link = links[i];
+      let name = link.getElementsByTagName("a")[0].childNodes[1].data;
+      if (name.toLowerCase() == pageName.toLowerCase())
+        link.classList.add('active');
+    }
+  })
+</script>
