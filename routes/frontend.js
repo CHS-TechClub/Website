@@ -29,6 +29,10 @@ router.get('/groups/:name?', (req, res) => {
   });
 })
 
+router.get('/test', (req, res) => {
+  res.render("pages/test");
+})
+
 router.get('/login', (req, res) => {
   res.render("pages/login");
 })
